@@ -307,7 +307,7 @@ p5_valle <- ggR(rstack_alps_valle$renyi_alpha_0, 1, geom_raster = TRUE, stretch=
 
 p9_valle <- ggR(rstack_alps_valle$renyi_alpha_2, 1, geom_raster = TRUE, stretch="lin") + ggtitle("Rényi (alpha=2) valle") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
 
-grid.arrange(p0_valle, p02_valle, p1_valle, p3_valle, p5_valle, p9_glacier,p4_valle, nrow= 2)
+grid.arrange(p0_valle, p02_valle, p1_valle, p3_valle, p5_valle, p9_valle,p4_valle, nrow= 2)
 
 #####
 
@@ -321,3 +321,38 @@ grid.arrange(p1, p1_glacier, p1_valle, nrow= 1)  # NDVI
 
 grid.arrange(p3, p3_glacier, p3_valle, p4, p4_glacier, p4_valle, p5, p5_glacier, p5_valle, p9, p9_glacier, p9_valle, nrow= 4) # Index
 
+
+
+# Aggiungo Renyi con alpha = 1
+
+ren_stack=stack(ren)
+names_renyi=paste0("renyi_alpha_", seq(0,1,2))
+names_rstak=c(names(r), "Shannon", "Rao", names_renyi )
+rstack_alps=stack(r, sha, rao, ren_stack)
+
+p6 <- ggR(rstack_alps$renyi_alpha_1, 1, geom_raster = TRUE, stretch="lin") + ggtitle("Rényi (alpha=1)") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+
+p6_valle <- ggR(rstack_alps_valle$renyi_alpha_1, 1, geom_raster = TRUE, stretch="lin") + ggtitle("Rényi (alpha=1) valle") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+
+p6_glacier <- ggR(rstack_alps_glacier$renyi_alpha_1, 1, geom_raster = TRUE, stretch="lin") + ggtitle("Rényi (alpha=1) glacier") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+
+
+# Total area (update)
+
+grid.arrange(p0, p0.2, p1, p3, p5, p6, p9, p4, nrow = 2)
+
+
+# Glacier area (update)
+
+
+grid.arrange(p0_glacier, p02_glacier, p1_glacier, p3_glacier, p5_glacier, p6_glacier, p9_glacier,p4_glacier, nrow= 2)
+
+
+# Valle (update)
+
+grid.arrange(p0_valle, p02_valle, p1_valle, p3_valle, p5_valle, p6_valle, p9_glacier, p4_valle, nrow= 2)
+
+
+# INDEX (update)
+
+grid.arrange(p3, p3_glacier, p3_valle, p4, p4_glacier, p4_valle, p5, p5_glacier, p5_valle, p6, p6_glacier, p6_valle, p9, p9_glacier, p9_valle, nrow= 5)
