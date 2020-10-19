@@ -386,12 +386,24 @@ par(mfrow=c(3,4))
                   
 # Riga 1:
                   
+p0 # RGB true colours
+p02 # RGB false colours
+p1 # NDVI                  
+p3 # Shannon             
 
+# Riga 2
+
+plot(renyi$Renyi_alpha_0, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T)
+plot(renyi$Renyi_alpha_1, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T)
+plot(renyi$Renyi_alpha_2, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T)
+plot(renyi$Renyi_alpha_3, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T)
+
+# Riga 3                  
                   
-             
-
-
-
-
-
-
+plot(renyi$Renyi_alpha_4, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T)
+plot(renyi$Renyi_alpha_5, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T)
+plot(renyi$Renyi_alpha_10, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T)
+p4 (Rao)                  
+                  
+                  
+                  
