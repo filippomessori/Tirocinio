@@ -382,28 +382,23 @@ dev.off()
 
 par(mfrow=c(3,4))
                   
+plotRGB(s2_stack, r=3, g=2, b=1, stretch="Lin", axes=TRUE, main= "RGB", xlab= "x", ylab= "y") # RGB true colors
+plotRGB(s2_stack, r=4, g=3, b=2, stretch="Lin", axes=TRUE, main= "RGB false colours", xlab= "x", ylab= "y") # RGB false colors
+plot(alps_ndvi_recl, col= col_ndvi, xlab="x", ylab="y", main= "NDVI") # NDVI
+plot(rstack_alps$Shannon, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Shannon")
+                  
 
                   
-# Riga 1:
+plot(renyi$Renyi_alpha_0, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=0)") # alpha=0
+plot(renyi$Renyi_alpha_1, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=1)")# alpha=1
+plot(renyi$Renyi_alpha_2, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=2)")# alpha=2
+plot(renyi$Renyi_alpha_3, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=3)")# alpha=3
+ 
                   
-p0 # RGB true colours
-p02 # RGB false colours
-p1 # NDVI                  
-p3 # Shannon             
-
-# Riga 2
-
-plot(renyi$Renyi_alpha_0, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T)
-plot(renyi$Renyi_alpha_1, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T)
-plot(renyi$Renyi_alpha_2, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T)
-plot(renyi$Renyi_alpha_3, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T)
-
-# Riga 3                  
-                  
-plot(renyi$Renyi_alpha_4, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T)
-plot(renyi$Renyi_alpha_5, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T)
-plot(renyi$Renyi_alpha_10, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T)
-p4 (Rao)                  
+plot(renyi$Renyi_alpha_4, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=4)") # alpha=4
+plot(renyi$Renyi_alpha_5, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=5)") # alpha=5
+plot(renyi$Renyi_alpha_10, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=10)") # alpha=10
+plot(rstack_alps$Rao, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Rao") # Rao
                   
                   
                   
