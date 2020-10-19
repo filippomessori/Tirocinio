@@ -389,16 +389,17 @@ plot(rstack_alps$Shannon, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, x
                   
 
                   
-plot(renyi$Renyi_alpha_0, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=0)") # alpha=0
-plot(renyi$Renyi_alpha_1, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=1)")# alpha=1
-plot(renyi$Renyi_alpha_2, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=2)")# alpha=2
+plot(renyi$Renyi_alpha_0, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=0)") # alpha=0
+plot(renyi$Renyi_alpha_1, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=1)")# alpha=1
+plot(renyi$Renyi_alpha_2, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=2)")# alpha=2
 plot(renyi$Renyi_alpha_3, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=3)")# alpha=3
  
                   
-plot(renyi$Renyi_alpha_4, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=4)") # alpha=4
-plot(renyi$Renyi_alpha_5, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=5)") # alpha=5
+plot(renyi$Renyi_alpha_4, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=4)") # alpha=4
+plot(renyi$Renyi_alpha_5, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=5)") # alpha=5
 plot(renyi$Renyi_alpha_10, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=10)") # alpha=10
-plot(rstack_alps$Rao, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Rao") # Rao
+col_rao <- colorRampPalette(c("red", "yellow","green", "cyan","blue", "purple")) (100)
+plot(rstack_alps$Rao, col=col_rao, legend=T, axes=T, xlab="x", ylab= "y", main= "Rao") # Rao
                   
                   
                   
