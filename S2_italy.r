@@ -368,8 +368,8 @@ r <- stack(ren)
 r.range <- c(minValue(r), maxValue(r))
 
 png("~/renyi_indx_sentinel.png",width = 480*4, height = 480*2,pointsize=20)
-rplot(stack(ren),col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=FALSE)
-rplot(r[[1]], legend.only=TRUE, horizontal=FALSE, col=pal(length(cuts)), legend.width=2, legend.shrink=0.5, axis.args=list(at=seq(0,5,1), labels=seq(0, 5, 1), cex.axis=2), legend.args=list(text="Renyi's Index", side=3, font=2, line=0.5, cex=2),smallplot=c(.82,.85, .03,.3)); par(mar = par("mar"))
+plot(stack(ren),col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=FALSE)
+plot(r[[1]], legend.only=TRUE, horizontal=FALSE, col=pal(length(cuts)), legend.width=2, legend.shrink=0.5, axis.args=list(at=seq(0,5,1), labels=seq(0, 5, 1), cex.axis=2), legend.args=list(text="Renyi's Index", side=3, font=2, line=0.5, cex=2),smallplot=c(.82,.85, .03,.3)); par(mar = par("mar"))
 dev.off()
 
 # bias più alto di 1 per dare più risoluzione ai colori alla fine della paletta, minore di 1 per più risoluzione all'inizio. 
@@ -379,8 +379,9 @@ dev.off()
 
 
 
+plot(r$Renyi_alpha_0,col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=FALSE)
 
-
+             
 
 
 
