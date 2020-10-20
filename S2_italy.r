@@ -366,12 +366,12 @@ setwd("~/Desktop/TIROCINIO/R/S2_italy/S2A_MSIL2A_20200905T101031_N0214_R022_T32T
 ren_tot <- lapply(list.files(pattern="tif"), function(x) raster(x)/1000)
 pal <- colorRampPalette(c("purple","blue","cyan","green","yellow","red"), bias=3)
 cuts <- seq(0,5.017,length=20)
-renyi <- stack(ren_tot)
-r.range <- c(minValue(renyi), maxValue(renyi))
+renyi_stack <- stack(ren_tot)
+r.range <- c(minValue(renyi_stack), maxValue(renyi_stack))
 
 png("~/renyi_indx_sentinel.png",width = 480*4, height = 480*2,pointsize=20)
 plot(stack(ren_tot),col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=FALSE)
-plot(renyi[[1]], legend.only=TRUE, horizontal=FALSE, col=pal(length(cuts)), legend.width=2, legend.shrink=0.5, axis.args=list(at=seq(0,5,1), labels=seq(0, 5, 1), cex.axis=2), legend.args=list(text="Renyi's Index", side=3, font=2, line=0.5, cex=2),smallplot=c(.82,.85, .03,.3)); par(mar = par("mar"))
+plot(renyi_stack[[1]], legend.only=TRUE, horizontal=FALSE, col=pal(length(cuts)), legend.width=2, legend.shrink=0.5, axis.args=list(at=seq(0,5,1), labels=seq(0, 5, 1), cex.axis=2), legend.args=list(text="Renyi's Index", side=3, font=2, line=0.5, cex=2),smallplot=c(.82,.85, .03,.3)); par(mar = par("mar"))
 dev.off()
 
 # bias più alto di 1 per dare più risoluzione ai colori alla fine della paletta, minore di 1 per più risoluzione all'inizio. 
@@ -389,15 +389,15 @@ plot(rstack_alps$Shannon, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, x
                   
 
                   
-plot(renyi$Renyi_alpha_0, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=0)") # alpha=0
-plot(renyi$Renyi_alpha_1, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=1)")# alpha=1
-plot(renyi$Renyi_alpha_2, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=2)")# alpha=2
-plot(renyi$Renyi_alpha_3, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=3)")# alpha=3
+plot(renyi_stack$Renyi_alpha_0, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=0)") # alpha=0
+plot(renyi_stack$Renyi_alpha_1, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=1)")# alpha=1
+plot(renyi_stack$Renyi_alpha_2, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=2)")# alpha=2
+plot(renyi_stack$Renyi_alpha_3, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=3)")# alpha=3
  
                   
-plot(renyi$Renyi_alpha_4, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=4)") # alpha=4
-plot(renyi$Renyi_alpha_5, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=5)") # alpha=5
-plot(renyi$Renyi_alpha_10, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=10)") # alpha=10
+plot(renyi_stack$Renyi_alpha_4, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=4)") # alpha=4
+plot(renyi_stack$Renyi_alpha_5, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=5)") # alpha=5
+plot(renyi_stack$Renyi_alpha_10, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=10)") # alpha=10
 col_rao <- colorRampPalette(c("red", "yellow","green", "cyan","blue", "purple")) (100)
 plot(rstack_alps$Rao, col=col_rao, legend=T, axes=T, xlab="x", ylab= "y", main= "Rao") # Rao
                   
