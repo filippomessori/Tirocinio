@@ -402,4 +402,15 @@ col_rao <- colorRampPalette(c("red", "yellow","green", "cyan","blue", "purple"))
 plot(rstack_alps$Rao, col=col_rao, legend=T, axes=T, xlab="x", ylab= "y", main= "Rao") # Rao
                   
                   
+# Zona lago:
+                  
+extension_lake <- c(610000, 622000, 5180000, 5192000)
+                  
+                  
+                  
+                  
+# Lago e Ghiacciaio:
+
+extension_small_lake <- c(635000, 646000, 5175000, 5186000)
+                  
                   
