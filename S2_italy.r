@@ -408,7 +408,22 @@ plot(rstack_alps$Rao, col=col_rao, legend=T, axes=T, xlab="x", ylab= "y", main= 
                   
 extension_resia <- c(610000, 622000, 5180000, 5192000)
 
+# Resia RGB:
+                  
+s2_resia_stack=crop(s2_stack, extension_resia)
+                  
+# Resia NDVI
+                  
+alps_resia_ndvi=crop(alps_ndvi, extension_resia)
+alps_resia_ndvi_recl= round(rescale(alps_resia_ndvi, x.min = -1, x.max = 1, new.min = 0, new.max = 255),0)
+alps_resia_ndvi_recl= rescale(alps_resia_ndvi, x.min = -1, x.max = 1, new.min = 0, new.max = 255)
+plot(alps_resia_ndvi_recl)
+storage.mode(alps_resia_ndvi_recl[]) = "integer"
 
+# Index:
+                  
+rstack_alps_resia=crop(rstack_alps, extension_resia)
+plot(rstack_alps_resia)
                   
 p1_resia <- ggR(rstack_alps_resia$ndvi_alps_May9th2020, 1, geom_raster = TRUE) + ggtitle("NDVI lago di Resia") + scale_fill_gradient(low='light green', high='dark green', na.value=NA)
 p3_resia <- ggR(rstack_alps_resia$Shannon, 1, geom_raster = TRUE, stretch="none") + ggtitle("Shannon's H lago di Resia") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
@@ -420,7 +435,28 @@ p9_resia <- ggR(rstack_alps_resia$renyi_alpha_2, 1, geom_raster = TRUE, stretch=
 grid.arrange(p0_resia, p02_resia, p1_resia, p3_resia, p5_resia, p6_resia, p9_resia, p4_resia, nrow= 2)
                   
                   
-# Lago e Ghiacciaio:
+
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  # Lago e Ghiacciaio:
 
 extension_vernago_lake <- c(635000, 646000, 5175000, 5186000)
                   
