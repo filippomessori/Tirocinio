@@ -299,15 +299,15 @@ p02_valle=ggRGB(s2_valle_stack, r=4, g=3, b=2, stretch="Lin", 1, geom_raster = T
 
 p1_valle <- ggR(rstack_alps_valle$layer, 1, geom_raster = TRUE) + ggtitle("NDVI valle") + scale_fill_gradient(low='light green', high='dark green', na.value=NA)
 
-p3_valle <- ggR(rstack_alps_valle$Shannon, 1, geom_raster = TRUE, stretch="NONE") + ggtitle("Shannon's H valle") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p3_valle <- ggR(rstack_alps_valle$Shannon, 1, geom_raster = TRUE, stretch="none") + ggtitle("Shannon's H valle") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
 
-p4_valle <- ggR(rstack_alps_valle$Rao, 1, geom_raster = TRUE, stretch="NONE") +  ggtitle("Rao's Q valle")+ scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p4_valle <- ggR(rstack_alps_valle$Rao, 1, geom_raster = TRUE, stretch="none") +  ggtitle("Rao's Q valle")+ scale_fill_gradient(low='yellow', high='blue', na.value=NA)
 
-p5_valle <- ggR(rstack_alps_valle$renyi_alpha_0, 1, geom_raster = TRUE, stretch="NONE") + ggtitle("Rényi (alpha=0) valle") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p5_valle <- ggR(rstack_alps_valle$renyi_alpha_0, 1, geom_raster = TRUE, stretch="none") + ggtitle("Rényi (alpha=0) valle") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
 
-p6_valle <- ggR(rstack_alps_valle$renyi_alpha_1, 1, geom_raster = TRUE, stretch="NONE") + ggtitle("Rényi (alpha=1) valle") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p6_valle <- ggR(rstack_alps_valle$renyi_alpha_1, 1, geom_raster = TRUE, stretch="none") + ggtitle("Rényi (alpha=1) valle") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
 
-p9_valle <- ggR(rstack_alps_valle$renyi_alpha_2, 1, geom_raster = TRUE, stretch="NONE") + ggtitle("Rényi (alpha=2) valle") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p9_valle <- ggR(rstack_alps_valle$renyi_alpha_2, 1, geom_raster = TRUE, stretch=" none") + ggtitle("Rényi (alpha=2) valle") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
 
 grid.arrange(p0_valle, p02_valle, p1_valle, p3_valle, p5_valle, p9_valle,p4_valle, nrow= 2)
 
