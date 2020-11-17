@@ -405,12 +405,16 @@ plot(rstack_alps$Rao, col=col_rao, legend=T, axes=T, xlab="x", ylab= "y", main= 
 # Zona lago:
                   
 extension_lake <- c(610000, 622000, 5180000, 5192000)
+plotRGB(s2_resia_stack, r=3, g=2, b=1, stretch="Lin")
+plotRGB(s2_resia_stack, r=4, g=3, b=2, stretch="Lin")
                   
+
                   
+
                   
                   
 # Lago e Ghiacciaio:
 
-extension_small_lake <- c(635000, 646000, 5175000, 5186000)
+extension_vernago_lake <- c(635000, 646000, 5175000, 5186000)
                   
                   
