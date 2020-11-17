@@ -406,13 +406,18 @@ plot(rstack_alps$Rao, col=col_rao, legend=T, axes=T, xlab="x", ylab= "y", main= 
                   
 # Zona lago:
                   
-extension_lake <- c(610000, 622000, 5180000, 5192000)
-plotRGB(s2_resia_stack, r=3, g=2, b=1, stretch="Lin")
-plotRGB(s2_resia_stack, r=4, g=3, b=2, stretch="Lin")
-                  
+extension_resia <- c(610000, 622000, 5180000, 5192000)
+
 
                   
+p1_resia <- ggR(rstack_alps_resia$ndvi_alps_May9th2020, 1, geom_raster = TRUE) + ggtitle("NDVI lago di Resia") + scale_fill_gradient(low='light green', high='dark green', na.value=NA)
+p3_resia <- ggR(rstack_alps_resia$Shannon, 1, geom_raster = TRUE, stretch="none") + ggtitle("Shannon's H lago di Resia") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p4_resia <- ggR(rstack_alps_resia$Rao, 1, geom_raster = TRUE, stretch="none") +  ggtitle("Rao's Q lago di Resia")+ scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p5_resia <- ggR(rstack_alps_resia$renyi_alpha_0, 1, geom_raster = TRUE, stretch="none") + ggtitle("Rényi (alpha=0) lago di Resia") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p6_resia <- ggR(rstack_alps_resia$renyi_alpha_1, 1, geom_raster = TRUE, stretch="none") + ggtitle("Rényi (alpha=1) lago di Resia") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p9_resia <- ggR(rstack_alps_resia$renyi_alpha_2, 1, geom_raster = TRUE, stretch="none") + ggtitle("Rényi (alpha=2) lago di Resia") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
 
+grid.arrange(p0_resia, p02_resia, p1_resia, p3_resia, p5_resia, p6_resia, p9_resia, p4_resia, nrow= 2)
                   
                   
 # Lago e Ghiacciaio:
