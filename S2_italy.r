@@ -404,7 +404,9 @@ col_rao <- colorRampPalette(c("red", "yellow","green", "cyan","blue", "purple"))
 plot(rstack_alps$Rao, col=col_rao, legend=T, axes=T, xlab="x", ylab= "y", main= "Rao") # Rao
                   
                   
-# Zona lago:
+
+                  
+# Lago di Resia (1 498 m s.l.m)
                   
 extension_resia <- c(610000, 622000, 5180000, 5192000)
 
@@ -424,7 +426,9 @@ storage.mode(alps_resia_ndvi_recl[]) = "integer"
                   
 rstack_alps_resia=crop(rstack_alps, extension_resia)
 plot(rstack_alps_resia)
-                  
+
+p0_resia=ggRGB(s2_resia_stack, r=3, g=2, b=1, stretch="Lin", 1, geom_raster = TRUE) + ggtitle("RGB lago di Resia")
+p02_resia=ggRGB(s2_resia_stack, r=4, g=3, b=2, stretch="Lin", 1, geom_raster = TRUE) + ggtitle("RGB lago di Resia false colours")
 p1_resia <- ggR(rstack_alps_resia$ndvi_alps_May9th2020, 1, geom_raster = TRUE) + ggtitle("NDVI lago di Resia") + scale_fill_gradient(low='light green', high='dark green', na.value=NA)
 p3_resia <- ggR(rstack_alps_resia$Shannon, 1, geom_raster = TRUE, stretch="none") + ggtitle("Shannon's H lago di Resia") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
 p4_resia <- ggR(rstack_alps_resia$Rao, 1, geom_raster = TRUE, stretch="none") +  ggtitle("Rao's Q lago di Resia")+ scale_fill_gradient(low='yellow', high='blue', na.value=NA)
@@ -435,29 +439,89 @@ p9_resia <- ggR(rstack_alps_resia$renyi_alpha_2, 1, geom_raster = TRUE, stretch=
 grid.arrange(p0_resia, p02_resia, p1_resia, p3_resia, p5_resia, p6_resia, p9_resia, p4_resia, nrow= 2)
                   
                   
+# Renyi's Index
+                  
+renyi_stack_resia <- crop(renyi_stack, extension_resia)
+r.range <- c(minValue(renyi_stack_resia), maxValue(renyi_stack_resia))
+
+par(mfrow=c(3,4))
+
+plotRGB(s2_resia_stack, r=3, g=2, b=1, stretch="Lin", axes=TRUE, main= "RGB lago Resia", xlab= "x", ylab= "y")
+plotRGB(s2_resia_stack, r=4, g=3, b=2, stretch="Lin", axes=TRUE, main= "RGB lago Resia false colours", xlab= "x", ylab= "y")
+plot(alps_resia_ndvi_recl, xlab="x", ylab="y", main= "NDVI lago Resia")
+plot(rstack_alps_resia$Shannon, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Shannon lago Resia")
+                  
+plot(renyi_stack_resia$Renyi_alpha_0, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=0) Resia")
+plot(renyi_stack_resia$Renyi_alpha_1, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=1)")
+plot(renyi_stack_resia$Renyi_alpha_2, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=2)")
+plot(renyi_stack_resia$Renyi_alpha_3, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=3)")
+                  
+plot(renyi_stack_resia$Renyi_alpha_4, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=4)")
+plot(renyi_stack_resia$Renyi_alpha_5, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=5)")
+plot(renyi_stack_resia$Renyi_alpha_10, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=10)")
+col_rao <- colorRampPalette(c("red", "yellow","green", "cyan","blue", "purple")) (100)
+plot(rstack_alps_resia$Rao, col=col_rao, legend=T, axes=T, xlab="x", ylab= "y", main= "Rao Resia")
+                  
+                  
+                  
+# Lago di Vernago (1.690m s.l.m)
+
+extension_vernago <- c(635000, 646000, 5175000, 5186000)
+
+# RGB                  
+s2_vernago_stack=crop(s2_stack, extension_vernago)
+
+# NDVI                  
+alps_vernago_ndvi=crop(alps_ndvi, extension_vernago)
+alps_vernago_ndvi_recl= round(rescale(alps_vernago_ndvi, x.min = -1, x.max = 1, new.min = 0, new.max = 255),0)
+alps_vernago_ndvi_recl= rescale(alps_vernago_ndvi, x.min = -1, x.max = 1, new.min = 0, new.max = 255)
+plot(alps_vernago_ndvi_recl)
+storage.mode(alps_vernago_ndvi_recl[]) = "integer"
+
+# Index
+rstack_alps_vernago=crop(rstack_alps, extension_vernago)
+plot(rstack_alps_vernago)
+
+p1_vernago <- ggR(rstack_alps_vernago$ndvi_alps_May9th2020, 1, geom_raster = TRUE) + ggtitle("NDVI lago di Vernago") + scale_fill_gradient(low='light green', high='dark green', na.value=NA)
+p3_vernago <- ggR(rstack_alps_vernago$Shannon, 1, geom_raster = TRUE, stretch="none") + ggtitle("Shannon's H lago di Vernago") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p4_vernago <- ggR(rstack_alps_vernago$Rao, 1, geom_raster = TRUE, stretch="none") +  ggtitle("Rao's Q lago di Vernago")+ scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p5_vernago <- ggR(rstack_alps_vernago$renyi_alpha_0, 1, geom_raster = TRUE, stretch="none") + ggtitle("Rényi (alpha=0) lago di Vernago") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p6_vernago <- ggR(rstack_alps_vernago$renyi_alpha_1, 1, geom_raster = TRUE, stretch="none") + ggtitle("Rényi (alpha=1) lago di Vernago") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p9_vernago <- ggR(rstack_alps_vernago$renyi_alpha_2, 1, geom_raster = TRUE, stretch="none") + ggtitle("Rényi (alpha=2) lago di Vernago") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p0_vernago=ggRGB(s2_vernago_stack, r=3, g=2, b=1, stretch="Lin", 1, geom_raster = TRUE) + ggtitle("RGB lago di Vernago")
+p02_vernago=ggRGB(s2_vernago_stack, r=4, g=3, b=2, stretch="Lin", 1, geom_raster = TRUE) + ggtitle("RGB lago di Vernago false colours")
+ 
+grid.arrange(p0_vernago, p02_vernago, p1_vernago, p3_vernago, p5_vernago, p6_vernago, p9_vernago, p4_vernago, nrow= 2)
 
                   
+# Renyi's Index
+ 
+renyi_stack_vernago <- crop(renyi_stack, extension_vernago)
+r.range <- c(minValue(renyi_stack_vernago), maxValue(renyi_stack_vernago))
                   
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  
-                  # Lago e Ghiacciaio:
+par(mfrow=c(3,4))
 
-extension_vernago_lake <- c(635000, 646000, 5175000, 5186000)
+plotRGB(s2_vernago_stack, r=3, g=2, b=1, stretch="Lin", axes=TRUE, main= "RGB Vernago", xlab= "x", ylab= "y")
+plotRGB(s2_vernago_stack, r=4, g=3, b=2, stretch="Lin", axes=TRUE, main= "RGB lago Vernago false colours", xlab= "x", ylab= "y")
+plot(alps_vernago_ndvi_recl, xlab="x", ylab="y", main= "NDVI lago Vernago")
+plot(rstack_alps_vernago$Shannon, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Shannon lago Vernago")
+
+plot(renyi_stack_vernago$Renyi_alpha_0, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=0) Vernago")
+plot(renyi_stack_vernago$Renyi_alpha_1, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=1)")
+plot(renyi_stack_vernago$Renyi_alpha_2, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=2)")
+plot(renyi_stack_vernago$Renyi_alpha_3, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=3)")
+
+plot(renyi_stack_vernago$Renyi_alpha_4, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=4)")
+plot(renyi_stack_vernago$Renyi_alpha_5, col=pal(length(cuts)),breaks=cuts, legend=FALSE, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=5)")
+plot(renyi_stack_vernago$Renyi_alpha_10, col=pal(length(cuts)),breaks=cuts, legend=T, axes=T, xlab="x", ylab= "y", main= "Renyi (alpha=10)")
+plot(rstack_alps_vernago$Rao, col=col_rao, legend=T, axes=T, xlab="x", ylab= "y", main= "Rao Vernago")
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
                   
                   
