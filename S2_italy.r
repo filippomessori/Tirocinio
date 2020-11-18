@@ -519,8 +519,37 @@ plot(rstack_alps_vernago$Rao, col=col_rao, legend=T, axes=T, xlab="x", ylab= "y"
                   
                   
                   
+# Area meleti vicino al lago di Resia
+
+# RGB
+
+extension_meleti_resia <- c(605000, 625000, 5165000, 5190000)
+rgb_meleti_resia <- crop(s2_stack, extension_meleti_resia)
+plotRGB(rgb_meleti_resia, r=4, g=3, b=2, stretch="Lin")
+                  
+# NDVI
+
+ndvi_meleti_resia <- crop(alps_ndvi_recl, extension_meleti_resia)
+
+# Index
+                  
+index_meleti_resia=crop(rstack_alps, extension_meleti_resia)
                   
                   
+                  
+# Preparazione grafici
+                  
+p0_resia_meleti=ggRGB(rgb_meleti_resia, r=3, g=2, b=1, stretch="Lin", 1, geom_raster = TRUE) + ggtitle("RGB meleti vicino Resia")
+p0.2_resia_meleti=ggRGB(rgb_meleti_resia, r=4, g=3, b=2, stretch="Lin", 1, geom_raster = TRUE) + ggtitle("RGB false colours")
+p1_resia_meleti <- ggR(index_meleti_resia$ndvi_alps_May9th2020, 1, geom_raster = TRUE) + ggtitle("NDVI") + scale_fill_gradient(low='light green', high='dark green', na.value=NA)
+p3_resia_meleti <- ggR(index_meleti_resia$Shannon, 1, geom_raster = TRUE, stretch="none") + ggtitle("Shannon's H") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p4_resia_meleti <- ggR(index_meleti_resia$Rao, 1, geom_raster = TRUE, stretch="none") +  ggtitle("Rao's Q")+ scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p5_resia_meleti <- ggR(index_meleti_resia$Renyi_alpha_0, 1, geom_raster = TRUE, stretch="none") + ggtitle("Rényi (alpha=0)") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p6_resia_meleti <- ggR(index_meleti_resia$Shannon_Renyi_alpha_1, 1, geom_raster = TRUE, stretch="none") + ggtitle("Rényi (alpha=1)") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+p9_resia_meleti <- ggR(index_meleti_resia$Renyi_alpha_2, 1, geom_raster = TRUE, stretch="none") + ggtitle("Rényi (alpha=2)") + scale_fill_gradient(low='yellow', high='blue', na.value=NA)
+                  
+grid.arrange(p0_resia_meleti, p0.2_resia_meleti, p1_resia_meleti, p3_resia_meleti, p5_resia_meleti, p6_resia_meleti, p9_resia_meleti, p4_resia_meleti, nrow= 2)
+ 
                   
                   
                   
